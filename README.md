@@ -2,6 +2,17 @@
 
 A command-line task management application built with **NestJS** and **TypeScript**. This CLI allows users to manage tasks with features like user management, task creation, completion tracking, and more.
 
+---
+
+# 👥 Team Members
+
+- Kaustubh Rajendra Rajput
+- Shrisan kapali
+- Gaurab Karki
+- Bikram Rumba
+- Shivam Trivedi
+
+---
 ## ✨ Features
 
 ### 👥 User Management
