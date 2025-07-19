@@ -5,6 +5,6 @@ import { CliService } from './cli/cli.service';
 async function bootstrap() {
   const app = await NestFactory.createApplicationContext(AppModule);
   const cli = app.get(CliService);
-  await cli.run();
+  cli.run();
 }
 bootstrap();
