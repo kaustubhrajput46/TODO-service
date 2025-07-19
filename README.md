@@ -1,98 +1,187 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 📋 Task Management CLI
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A command-line task management application built with **NestJS** and **TypeScript**. This CLI allows users to manage tasks with features like user management, task creation, completion tracking, and more.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## ✨ Features
 
-## Description
+### 👥 User Management
+- Create new users
+- Select active users
+- Switch between users
+- List all available users
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### 📝 Task Management
+- Add new tasks with descriptions and categories
+- Remove tasks by ID
+- Mark tasks as complete
+- View personal tasks
+- View all tasks in the system
+- Task categorization and status tracking
 
-## Project setup
+## 🚀 Getting Started
 
-```bash
-$ npm install
+### Prerequisites
+- **Node.js** (v18 or higher)
+- **npm** package manager
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd task-management-cli
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Build the application**
+   ```bash
+   npm run build
+   ```
+
+4. **Start the CLI**
+   ```bash
+   npm run start
+   ```
+
+## 🎯 Usage
+
+### User Menu
+When you start the application, you'll see the **User Menu**:
 ```
 
-## Compile and run the project
+--- User Menu ---
+1. Select User
+2. Create New User
+3. Exit
+```
+- **Option 1**: Choose from existing users
+- **Option 2**: Create a new user account
+- **Option 3**: Exit the application
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+### Task Menu
+Once logged in, you'll access the **Task Menu**:
 ```
 
-## Run tests
+--- Task Menu (User: username) ---
+1. Add Task
+2. Remove Task
+3. Mark Task as Complete
+4. View My Tasks
+5. View All Tasks
+6. Switch User (Log Out)
+```
+### Example Workflow
 
-```bash
-# unit tests
-$ npm run test
+1. **Create a new user**
+   ```
+   Enter new username: john_doe
+   User 'john_doe' created and selected.
+   ```
 
-# e2e tests
-$ npm run test:e2e
+2. **Add a task**
+   ```
+   Enter task description: Complete project documentation
+   Enter task category: Work
+   SUCCESS: Task 'Complete project documentation' added with ID: 1
+   ```
 
-# test coverage
-$ npm run test:cov
+3. **View your tasks**
+   ```
+   --- Tasks for john_doe ---
+   Task[ID=1, Desc='Complete project documentation', Cat='Work', Status=PENDING, User=john_doe]
+   ```
+
+## 🏗️ Architecture
+
+The application follows a modular **NestJS** architecture:
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+src/
+├── cli/               # CLI interface and user interaction
+│   └── cli.service.ts
+├── tasks/             # Task management logic
+│   ├── task.entity.ts
+│   └── tasks.service.ts
+├── users/             # User management logic
+│   ├── user.entity.ts
+│   └── users.service.ts
+├── app.module.ts      # Main application module
+└── main.ts           # Application entry point
 ```
+### Key Components
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+- **CliService**: Handles user interface and menu interactions
+- **TasksService**: Manages task CRUD operations
+- **UsersService**: Handles user creation and selection
+- **Task Entity**: Defines task structure with ID, description, category, status, and assigned user
+- **User Entity**: Defines user structure with ID and username
 
-## Resources
+## 🛠️ Development
 
-Check out a few resources that may come in handy when working with NestJS:
+### Available Scripts
+```
+bash
+# Development
+npm run start:dev    # Start in development mode with hot reload
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+# Production
+npm run build        # Build the application
+npm run start        # Start the built application
 
-## Support
+# Code Quality
+npm run lint         # Run ESLint
+npm run format       # Format code with Prettier
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# Testing
+npm run test         # Run unit tests
+npm run test:e2e     # Run end-to-end tests
+```
+### Technology Stack
 
-## Stay in touch
+- **[NestJS](https://nestjs.com/)** - Progressive Node.js framework
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[readline-sync](https://www.npmjs.com/package/readline-sync)** - Synchronous readline for CLI input
+- **[RxJS](https://rxjs.dev/)** - Reactive extensions for JavaScript
+- **[Jest](https://jestjs.io/)** - Testing framework
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## 📝 Task Status
 
-## License
+Tasks can have the following statuses:
+- **PENDING** - Task is created but not completed
+- **COMPLETED** - Task has been marked as complete
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🐛 Known Issues
+
+- The CLI runs in an infinite loop - use Ctrl+C to force exit if needed
+- Task persistence is in-memory only - data is lost on application restart
+
+## 🔮 Future Enhancements
+
+- [ ] Database persistence (SQLite/PostgreSQL)
+- [ ] Task due dates and priorities
+- [ ] Task assignment between users
+- [ ] Export tasks to different formats
+- [ ] RESTful API endpoints
+- [ ] Web interface
+- [ ] Task filtering and search
+- [ ] User authentication and authorization
+
+---
+
+Built with ❤️ using NestJS and TypeScript
